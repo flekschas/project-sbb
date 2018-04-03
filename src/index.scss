@@ -1,0 +1,761 @@
+@import 'styles/colors';
+@import 'styles/margin-padding';
+@import 'styles/flexbox';
+@import 'styles/ratio';
+@import 'styles/transitions';
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1;
+}
+
+body {
+  background: $white;
+  color: $gray-dark;
+  font-size: 16px;
+  font-fammily: sans-serif;
+  font-weight: 300;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+
+h1, h2, h3 {
+  color: $gray-darker;
+  margin: 4rem 0 0.5rem 0;
+}
+
+h1, h2, h3, h4, h5, h6, p, li {
+  line-height: 1.5;
+  transition: font-size $normal $ease;
+}
+
+h1 {
+  font-size: 3rem;
+  margin: 0;
+  text-transform: uppercase;
+  color: transparentize($primary, 0.075);
+  line-height: 1;
+
+  .logo {
+    float: left;
+    width: 2.5rem;
+    height: 3rem;
+    padding-right: 0.5rem;
+    color: transparentize(lighten(desaturate($primary, 33%), 50%), 0.1);
+  }
+}
+
+h2 {
+  font-size: 1.75rem;
+}
+
+h1 + h2 {
+  color: transparentize($black, 0.2);
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+.content h3:first-child {
+  margin-top: 0;
+}
+
+h4 {
+  margin: 1.5rem 0 0.5rem 0;
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+  display: inline;
+}
+
+p {
+  margin: 0.5rem 0;
+  padding: 0;
+  text-align: justify;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, 0.25);
+  transition: all $fast $ease;
+}
+
+a:hover {
+  color: $black;
+  box-shadow: inset 0 -2px 0 0 rgba(0, 0, 0, 1);
+}
+
+a:focus {
+  color: $secondary;
+  background: transparentize($secondary, 0.9);
+  box-shadow: inset 0 0 0 1px transparentize($secondary, 0.95);
+  outline: none;
+  border-radius: 2px;
+}
+
+abbr,
+abbr[title] {
+  border-bottom: 0;
+  text-decoration: none !important;
+}
+
+input {
+  font-size: inherit;
+}
+
+button:active {
+  outline: none;
+}
+
+b, strong {
+  font-weight: 600;
+}
+
+::-webkit-selection {
+  color: $white;
+  background: $secondary;
+}
+
+::-moz-selection {
+  color: $white;
+  background: $secondary;
+}
+
+::selection {
+  color: $white;
+  background: $secondary;
+}
+
+figcaption {
+    font-size: 0.85em;
+}
+
+section.text {
+  position: relative;
+  overflow: auto;
+
+  p {
+    margin: 1.5em 0;
+
+    &:first-child,
+    &.first {
+        margin-top: 0;
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+  }
+
+  figure {
+    margin: 0.25em 2em;
+    padding: 0;
+
+    figcaption {
+      margin-top: 1em;
+    }
+  }
+}
+
+/*
+ * -----------------------------------------------------------------------------
+ * General styles, i.e. classes
+ * -----------------------------------------------------------------------------
+ */
+
+.larger {
+  font-size: 1.125em;
+}
+
+.darker {
+  color: $gray-darker;
+}
+
+.content-wrapper {
+  position: relative;
+  z-index: 3;
+  background: $white;
+  box-shadow: 0 -1px 2rem 0 rgba(0, 0, 0, 0.1),
+              0 -1px 6px 0 rgba(0, 0, 0, 0.1),
+              inset 0 1px 0 0 rgba(0, 0, 0, 0.2);
+}
+
+.blue {
+  color: $primary;
+}
+
+.centered {
+  text-align: center;
+}
+
+svg.centered {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.content {
+  margin: 0 1rem;
+}
+
+.abstract {
+  text-align: justify;
+}
+
+.hidden-anchor {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: -2rem;
+  bottom: 0;
+  width: 0.5em;
+  padding: 0 1.5rem 0 0.25rem;
+  opacity: 0.33;
+  transform: scale(0);
+  transition: all $fast $ease;
+  box-shadow: none !important;
+  cursor: pointer;
+
+  > .icon {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+h3:hover .hidden-anchor,
+h3:target .hidden-anchor {
+  transform: scale(1);
+}
+
+.hidden-anchor:hover,
+h3:target .hidden-anchor {
+  opacity: 1;
+}
+
+h3:target  {
+  color: $black;
+  background: transparentize($secondary, 0.9);
+
+  &:before {
+    position: absolute;
+    content: '';
+    top: 0;
+    bottom: 0;
+    left: -2rem;
+    width: 2rem;
+    background: transparentize($secondary, 0.9);
+  }
+
+  &.underlined:after {
+    left: -2rem;
+    background: $secondary;
+  }
+
+  .hidden-anchor {
+    padding-right: 0.25rem;
+    color: $white;
+    background: $secondary;
+  }
+}
+
+h3.anchored {
+  transition: all $fast $ease;
+}
+
+.note {
+  color: $gray-medium;
+  font-style: italic;
+}
+
+.no-list-style {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+ul.medium-spacing li,
+ol.medium-spacing li {
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+}
+
+ul.large-spacing li,
+ol.large-spacing li {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul.medium-spacing li,
+ul.large-spacing li,
+ol.medium-spacing li,
+ol.large-spacing li {
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.smaller {
+  font-size: 0.85em;
+}
+
+.underlined {
+  position: relative;
+
+  &:after {
+    position: absolute;
+    display: block;
+    content: '';
+    bottom: -1px;
+    left: -1rem;
+    right: -1rem;
+    height: 2px;
+    background: $gray-lighter;
+    transition: left $fast $ease;
+  }
+}
+
+h1.underlined:hover,
+h2.underlined:hover,
+h3.underlined:hover,
+h4.underlined:hover,
+h5.underlined:hover {
+  &:after {
+    left: -2rem;
+  }
+}
+
+h3.iconized,
+h4.iconized,
+h5.iconized {
+  position: relative;
+  display: block;
+
+  > * {
+    display: block;
+    float: left
+  }
+
+  > .icon {
+    height: 100%;
+    width: 1em;
+    margin-right: 0.25em;
+
+    &.icon-small {
+      width: 0.75em;
+    }
+  }
+}
+
+h3.iconized {
+  height: 3rem;
+}
+
+h4.iconized {
+  height: 1.5rem;
+}
+
+h5.iconized {
+  height: 1.25rem;
+}
+
+ol.iconized,
+ul.iconized {
+  position: relative;
+  overflow: auto;
+
+  li {
+    position: relative;
+    overflow: auto;
+
+    > * {
+        display: block;
+        float: left
+    }
+
+    > *:last-child {
+        margin-right: 0.5em;
+    }
+
+    .icon {
+      height: 1.5em;
+      width: 1em;
+      margin-right: 0.25em;
+    }
+  }
+}
+
+.icon-inline {
+  display: inline;
+  width: 0.8em;
+  height: 0.8em;
+  line-height: 1.5em;
+  vertical-align: center;
+}
+
+.icon-new {
+  color: $ternary;
+}
+
+.inline-list li {
+  display: inline;
+}
+
+// Also known as `social-links`. But anything containing `social` will be
+// removed by adblockers.
+.remix-links {
+  font-size: 0.85em;
+}
+
+.date {
+  display: block;
+  font-size: 0.85em;
+  color: $gray-medium;
+}
+
+.two-authors li:first-child:after {
+  content: ' and ';
+}
+
+.video {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.reference .secondary-information {
+  font-size: 0.85em;
+}
+
+.btn {
+  display: block;
+  padding: 0.25em 0.75em;
+  border: 0;
+  border-radius: 0.25em;
+  color: $white;
+  background: $primary;
+  box-shadow: none;
+
+  &:hover {
+    color: $white;
+    background: saturate($primary, 30%);
+    box-shadow: none;
+  }
+
+  &:active,
+  &:focus {
+    color: $white;
+    border-radius: 0.25em;
+    background: darken($primary, 10%);
+    box-shadow: none;
+  }
+}
+
+.btn-primary {
+  background: $secondary;
+
+  &:hover {
+    background: saturate($secondary, 30%);
+  }
+
+  &:active,
+  &:focus {
+    color: $white;
+    border-radius: 0.25em;
+    background: darken($secondary, 10%);
+  }
+}
+
+.btn-big {
+  font-size: 1.25em;
+  font-weight: bold;
+}
+
+.ribbon-wrapper {
+  width: 8.5em;
+  height: 8.5em;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.ribbon {
+  font-weight: bold;
+  color: $black;
+  text-align: center;
+  -webkit-transform: rotate(45deg);
+  -moz-transform:    rotate(45deg);
+  -ms-transform:     rotate(45deg);
+  -o-transform:      rotate(45deg);
+  position: relative;
+  padding: 0.375em 1em;
+  left: -1em;
+  top: 2.5em;
+  width: 10em;
+  background-color: transparentize($secondary, 0.05);
+  color: $white;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
+
+  a {
+    box-shadow: none;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: $white;
+      box-shadow: inset 0 -1px 0 0 $white;
+    }
+  }
+}
+
+.journal {
+  font-style: italic;
+}
+
+/*
+ * -----------------------------------------------------------------------------
+ * Specific styles, i.e. IDs
+ * -----------------------------------------------------------------------------
+ */
+
+#fig-teaser {
+  @include ratio(2520, 1324);
+  background: url(images/test.png) no-repeat center center;
+  background-size: cover;
+}
+
+#authors-list h4 + p {
+  margin-top: -0.25rem;
+}
+
+#footer {
+  margin-top: 1rem;
+  padding: 2rem 0;
+  font-size: 0.85em;
+  color: $white;
+  background: $primary;
+  box-shadow: inset 0 6rem 6rem -6rem rgba(0, 0, 0, 0.66);
+
+  a {
+    box-shadow: inset 0 -1px 0 0 rgba(255, 255, 255, 0.25);
+  }
+
+  a:hover {
+    color: $white;
+    box-shadow: inset 0 -2px 0 0 rgba(255, 255, 255, 1);
+  }
+
+  .logo-hms,
+  .logo-dbmi {
+    color: $white;
+    height: 2em;
+  }
+
+  .logo-hms {
+    width: 10em;  /* 4 (w) : 1 (h) */
+    height: 2.5em;
+  }
+
+  .logo-dbmi {
+    width: 8.25em; /* 3.3 (w) : 1 (h) */
+    height: 2.5em;
+  }
+
+  .copyright {
+    color: transparentize($white, 0.5);
+    font-size: 0.85em;
+  }
+}
+
+#youtube {
+  @include ratio(3360, 2100);
+}
+
+/*
+ * -----------------------------------------------------------------------------
+ * Media Queries
+ * -----------------------------------------------------------------------------
+ */
+
+/* 400px */
+@media screen and (min-width: 25em) {
+  h1 {
+    font-size: 4rem;
+    line-height: 1.5;
+
+    .logo {
+      width: 3rem;
+      height: 6rem;
+    }
+  }
+
+  h1 + h2 {
+    font-size: 2rem;
+  }
+}
+
+/* 568px (Pure.css Grid: SM) */
+@media screen and (min-width: 35.5em) {
+  h1 {
+    font-size: 6rem;
+
+    .logo {
+      width: 4.5rem;
+      height: 9rem;
+    }
+  }
+
+  h1 + h2 {
+    font-size: 3rem;
+  }
+}
+
+/* 640px */
+@media screen and (min-width: 40em) {
+  h1 {
+    font-size: 7rem;
+
+    .logo {
+      width: 5rem;
+      height: 10.5rem;
+      padding-right: 1rem;
+    }
+  }
+
+  h1 + h2 {
+    font-size: 3.5rem;
+  }
+
+  .content {
+    margin-left: 8.3334%;  /* 1/12 */
+    margin-right: 8.3334%;
+  }
+
+  .video {
+    width: 90%;
+  }
+}
+
+/* 960px */
+@media screen and (min-width: 60em) {
+  body {
+    font-size: 20px;
+  }
+
+  h1 {
+    font-size: 9rem;
+
+    .logo {
+      width: 6rem;
+      height: 13.5rem;
+      margin-left: -7rem;
+    }
+  }
+
+  h1 + h2 {
+    font-size: 4rem;
+  }
+
+  .content {
+    margin-left: 11.1112%;  /* 1/9 */
+    margin-right: 11.1112%;
+  }
+
+  .video {
+    width: 80%;
+  }
+
+  .pointer {
+    font-size: 30px;
+  }
+
+  .pointer-wrapper {
+    top: -3.85rem;
+  }
+}
+
+/* 1280px */
+@media screen and (min-width: 80em) {
+  body {
+    font-size: 22px;
+  }
+
+  h1 {
+    .logo {
+      width: 7rem;
+      height: 13.5rem;
+      margin-left: -8rem;
+    }
+  }
+
+  .content {
+    margin-left: 16.66667%;  /* 1/6 */
+    margin-right: 16.66667%;
+  }
+
+  .video {
+    width: 70%;
+  }
+
+  .pointer {
+    font-size: 36px;
+  }
+
+  .pointer-wrapper {
+    top: -4.25rem;
+  }
+}
+
+/* 1600px */
+@media screen and (min-width: 100em) {
+  body {
+    font-size: 24px;
+  }
+
+  .abstract {
+    font-size: 28px;
+  }
+
+  .content {
+    margin-left: 20%;  /* 1/5 */
+    margin-right: 20%;
+  }
+
+  .pointer {
+    font-size: 48px;
+  }
+
+  .pointer-wrapper {
+    top: -5rem;
+  }
+}
