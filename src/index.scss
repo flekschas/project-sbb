@@ -433,10 +433,6 @@ ul.iconized {
   color: $gray-medium;
 }
 
-.two-authors li:first-child:after {
-  content: ' and ';
-}
-
 .video {
   display: block;
   margin-left: auto;
@@ -451,8 +447,47 @@ ul.iconized {
   }
 }
 
-.reference .secondary-information {
-  font-size: 0.85em;
+.reference {
+  .title {
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+
+  .authors {
+    margin-bottom: 0.125rem;
+  }
+
+  .authors li:after {
+    content: ', ';
+  }
+
+  .authors li:nth-last-child(2):after {
+    content: ' and ';
+  }
+
+  .authors li:last-child:after {
+    content: '';
+  }
+
+  .badges {
+    margin-top: 0.125rem;
+
+    li {
+      padding: 0 0.25em;
+      font-size: 0.85em;
+      text-transform: uppercase;
+      border-radius: 0.125rem;
+    }
+  }
+
+  .preprint {
+    color: $gray-dark;
+    background: $gray-lighter;
+  }
+
+  .secondary-information {
+    font-size: 0.9em;
+  }
 }
 
 .btn {
