@@ -42,5 +42,8 @@
   "scripts": {
     "build": "mkdir -p docs && rm -r docs/* && cp CNAME docs/ && webpack --mode production",
     "start": "webpack-dev-server --mode development --open"
+  },
+  "dependencies": {
+    "medium-zoom": "^0.4.0"
   }
 }

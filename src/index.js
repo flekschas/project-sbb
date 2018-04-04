@@ -1,3 +1,5 @@
+import mediumZoom from 'medium-zoom';
+
 import styles from './index.scss';  // eslint-disable-line
 
-console.log('Cheers');
+mediumZoom('.zoomable', { margin: 48 });
