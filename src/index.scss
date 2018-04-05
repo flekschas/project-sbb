@@ -4,6 +4,10 @@
 @import 'styles/ratio';
 @import 'styles/transitions';
 
+* {
+  box-sizing: border-box;
+}
+
 html,
 body {
   width: 100%;
@@ -222,6 +226,7 @@ svg.centered {
 .hidden-anchor {
   position: absolute;
   display: block;
+  box-sizing: content-box;
   top: 0;
   left: -2rem;
   bottom: 0;
@@ -462,7 +467,7 @@ ul.iconized {
   }
 
   .authors li:nth-last-child(2):after {
-    content: ' and ';
+    content: ', and ';
   }
 
   .authors li:last-child:after {
@@ -575,6 +580,20 @@ ul.iconized {
 
 .journal {
   font-style: italic;
+}
+
+.columns {
+  position: relative;
+  overflow: auto;
+
+  > * {
+    margin-top: 0;
+  }
+}
+
+.column-1-2 {
+  float: left;
+  width: 100%;
 }
 
 /*
@@ -730,44 +749,45 @@ ul.iconized {
     width: 80%;
   }
 
-  .pointer {
-    font-size: 30px;
+  .column-1-2 {
+    width: 50%;
   }
 
-  .pointer-wrapper {
-    top: -3.85rem;
+  .text .column-1-2:first-child {
+    padding-right: 0.5rem;
+  }
+
+  .text .column-1-2:last-child {
+    padding-left: 0.5rem;
   }
 }
 
 /* 1280px */
 @media screen and (min-width: 80em) {
   body {
-    font-size: 22px;
-  }
-
-  h1 {
-    .logo {
-      width: 7rem;
-      height: 13.5rem;
-      margin-left: -8rem;
-    }
+    font-size: 18px;
   }
 
   .content {
-    margin-left: 16.66667%;  /* 1/6 */
-    margin-right: 16.66667%;
+    margin-left: 16.6667%;  /* 1/6 */
+    margin-right: 16.6667%;
+  }
+
+  .fullscreen {
+    margin-left: -25%;  /* 1/6 */
+    margin-right: -25%;
   }
 
   .video {
     width: 70%;
   }
 
-  .pointer {
-    font-size: 36px;
+  .text .column-1-2:first-child {
+    padding-right: 1rem;
   }
 
-  .pointer-wrapper {
-    top: -4.25rem;
+  .text .column-1-2:last-child {
+    padding-left: 1rem;
   }
 }
 
