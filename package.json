@@ -40,7 +40,7 @@
     "webpack-dev-server": "^3.1.1"
   },
   "scripts": {
-    "build": "mkdir -p docs && rm -r docs/* && cp CNAME docs/ && webpack --mode production",
+    "build": "mkdir -p docs && rm -rf docs/* && cp CNAME docs/ && webpack --mode production",
     "start": "webpack-dev-server --mode development --open"
   },
   "dependencies": {
