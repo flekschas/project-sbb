@@ -119,6 +119,11 @@ module.exports = {
       cache: true,
       flatten: true,
     }, {
+      from: 'src/fonts/**/*',
+      to: 'fonts/',
+      cache: true,
+      flatten: true,
+    }, {
       from: 'src/docs/**/*',
       to: 'docs/',
       cache: true,

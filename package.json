@@ -1,7 +1,7 @@
 {
-  "name": "template",
+  "name": "sbb",
   "version": "0.1.0",
-  "description": "Template",
+  "description": "Project page for the Semantic Body Browser",
   "private": true,
   "author": "Fritz Lekschas",
   "license": "MIT",
