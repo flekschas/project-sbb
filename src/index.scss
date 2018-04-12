@@ -242,6 +242,7 @@ section.text {
 }
 
 .content-wrapper.teaser {
+  z-index: 2;
   padding: 2em 0 0 0;
   background: #115da9;
   background: -webkit-gradient(linear,left top,left bottom,from(#faf7f3),to(#ede9e4));
@@ -612,6 +613,34 @@ ul.iconized {
   margin: 0 2em;
   background: url(images/teaser.png) no-repeat center center;
   background-size: contain;
+  transform-origin: center bottom;
+  transition: transform $slow $ease;
+
+  &.active {
+    transform: scale(1.25);
+  }
+}
+
+#link-to-demo {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1em;
+
+  .btn {
+    height: 2em;
+    padding: 0 1em;
+    font-family: 'clear_sans_mediumregular';
+    font-size: 1.125em;
+    line-height: 2em;
+    transition: color $fast $ease, background $fast $ease, transform $fast $ease;
+
+    &:hover {
+      color: $black;
+      background: $secondary;
+      // transform: scale(1.1);
+    }
+  }
 }
 
 #fig-overview {
